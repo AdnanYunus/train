@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dp">
+
+    <ImageView
+        android:id="@+id/img_seat"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:src="@drawable/seat_normal">
+
+
+    </ImageView>
+
+    <ImageView
+        android:id="@+id/img_seat_selected"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:src="@drawable/seat_normal_selected"
+
+        android:visibility="invisible">
+
+
+    </ImageView>
+
+    <ImageView
+        android:id="@+id/img_book"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:src="@drawable/seat_normal_booked"
+
+        android:visibility="invisible">
+
+
+    </ImageView>
+
+    <TextView
+        android:id="@+id/seat_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/img_seat_selected"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="1dp"
+
+        android:textColor="@color/black" />
+</RelativeLayout>

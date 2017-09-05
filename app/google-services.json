@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "697750289286",
+    "firebase_url": "https://smart-train-reservation.firebaseio.com",
+    "project_id": "smart-train-reservation",
+    "storage_bucket": "smart-train-reservation.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:697750289286:android:ec25372d60a65177",
+        "android_client_info": {
+          "package_name": "com.smarttrainreservation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "697750289286-glglbt2j32jijptc7obi2c2at4n2fmhj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.smarttrainreservation",
+            "certificate_hash": "c1c6a7091424880db517e2e9748c4f1a4a6b569d"
+          }
+        },
+        {
+          "client_id": "697750289286-hjl6lir038j3igq6lvrkj02l0dq0r7hv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1ELsdnWZqFiBbj0ny3srh03j-zpBsVmU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "697750289286-hjl6lir038j3igq6lvrkj02l0dq0r7hv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
