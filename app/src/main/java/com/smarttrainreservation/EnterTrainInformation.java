@@ -1,7 +1,5 @@
 package com.smarttrainreservation;
 
-import android.app.ActivityOptions;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -15,6 +13,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.smarttrainreservation.Models.Train;
+import com.smarttrainreservation.Pojo.Seats;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -63,10 +62,11 @@ public class EnterTrainInformation extends AppCompatActivity {
         ButterKnife.inject(this);
         auth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
-
+        trainTicketsInfo();
 
 
     }
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @OnClick({R.id.btn_save})
     public void onClick(View view) {
@@ -114,4 +114,76 @@ public class EnterTrainInformation extends AppCompatActivity {
 
     }
 
+    public void trainTicketsInfo() {
+
+
+        DatabaseReference donorsRef = mDatabase.child("Train Seats");
+        DatabaseReference usersRef = donorsRef.child("Podi Menike");
+        DatabaseReference seat = usersRef.child("Third Class");
+
+        Seats seats = new Seats();
+        seats.setOne("free");
+        seats.setTwo("free");
+        seats.setThree("free");
+        seats.setFour("free");
+        seats.setFive("free");
+        seats.setSix("free");
+        seats.setSeven("free");
+        seats.setEight("free");
+        seats.setNine("free");
+        seats.setTen("free");
+        seats.setEleven("free");
+        seats.setTwelve("free");
+        seats.setThirteen("free");
+        seats.setFourteen("free");
+        seats.setFifteen("free");
+        seats.setSixteen("free");
+        seats.setSeventeen("free");
+        seats.setEighteen("free");
+        seats.setNineteen("free");
+        seats.setTwenty("free");
+        seats.setTwentyone("free");
+        seats.setTwentytwo("free");
+        seats.setTwentythree("free");
+        seats.setTwentyfour("free");
+        seats.setTwentyfive("free");
+        seats.setTwentysix("free");
+        seats.setTwentyseven("free");
+        seats.setTwentyeight("free");
+        seats.setTwentynine("free");
+        seats.setThirty("free");
+        seats.setThirtyone("free");
+        seats.setThirtytwo("free");
+        seats.setThirtythree("free");
+        seats.setThirtyfour("free");
+        seats.setThirtyfive("free");
+        seats.setThirtysix("free");
+        seats.setThirtyseven("free");
+        seats.setThirtyeight("free");
+        seats.setThirtynine("free");
+        seats.setForty("free");
+        seats.setFortyone("free");
+        seats.setFortytwo("free");
+        seats.setFortythree("free");
+        seats.setFortyfour("free");
+        seats.setFourtyfive("free");
+        seats.setFortsix("free");
+        seats.setFortyseven("free");
+        seats.setFortyeight("free");
+        seats.setFortynine("free");
+        seats.setFifty("free");
+
+        seat.setValue(seats);
+        //   String userIdd = usersRef.push().getKey();
+
+
+        // progressView.setVisibility(View.INVISIBLE);
+
+        Toast.makeText(EnterTrainInformation.this, "Great train Seat savd!!", Toast.LENGTH_SHORT).show();
+
+        //finish();
+        //startActivity(new Intent(SignupActivity.this, MainActivity.class));
+
+
+    }
 }

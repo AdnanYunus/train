@@ -3,6 +3,7 @@ package com.smarttrainreservation;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -64,14 +65,18 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
             }
         });
+        int num;
+        Random re = new Random();
+        num = re.nextInt(50);
+        Log.d("SHAN","check"+num);
 
-
-        int[] number = new int[10];
+        /*int[] number = new int[1];
         ArrayList<Integer> integers = new ArrayList<>();
         int count = 0;
-        int num;
+
 
         Random r = new Random();
+
         while (count < number.length) {
             num = r.nextInt(50);
             boolean repeat = false;
@@ -91,13 +96,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
         }
 
-        Arrays.sort(number);
+        Arrays.sort(number);*/
 
-        for (int j = 0; j < number.length; j++) {
 
-            //  Log.d("SHAN","RANDOM****"+number[j]);
-            // System.out.print(number[j]+" ");
-        }
 
 
         final Spinner spinner = (Spinner) findViewById(R.id.spinner);

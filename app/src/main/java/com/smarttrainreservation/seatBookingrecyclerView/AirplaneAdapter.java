@@ -139,9 +139,15 @@ public class AirplaneAdapter extends SelectableAdapter<RecyclerView.ViewHolder> 
     }
 
     public void randomNumber(int nu) {
+
+
+        int num;
+        Random re = new Random();
+        num = re.nextInt(50);
+
         number = new int[nu];
         int count = 0;
-        int num;
+        //int num;
 
         Random r = new Random();
         while (count < number.length) {

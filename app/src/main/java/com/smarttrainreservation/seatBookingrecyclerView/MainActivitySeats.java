@@ -160,7 +160,6 @@ public class MainActivitySeats extends AppCompatActivity implements OnSeatSelect
                         old = old + "A" + (firSeat+a) + " ";
                     }
                 }
-//hello 
 
                 if (edt_nic.getText().length() < 1) {
                     edt_nic.setError("Enter your NIC number");
