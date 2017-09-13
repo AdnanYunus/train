@@ -9,8 +9,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.smarttrainreservation.Pojo.Seats;
 import com.smarttrainreservation.R;
 
+import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -19,18 +21,27 @@ public class AirplaneAdapter extends SelectableAdapter<RecyclerView.ViewHolder> 
 
     String passenger = "shan";
     int[] number;
+    int[] availableSeatsArray=new int[50];
     int len = 0;
     int a = 111, b = 111, c = 111, d = 111, e = 111, f = 111, g = 111, h = 111, i = 111, k = 111;
     private OnSeatSelected mOnSeatSelected;
     private Context mContext;
     private LayoutInflater mLayoutInflater;
     private List<EdgeItem> mItems;
+    Seats availableSeats;
 
-    public AirplaneAdapter(Context context, List<EdgeItem> items) {
+    public AirplaneAdapter(Context context, List<EdgeItem> items,Seats seats) {
         mOnSeatSelected = (OnSeatSelected) context;
         mContext = context;
         mLayoutInflater = LayoutInflater.from(context);
         mItems = items;
+        availableSeats=seats;
+
+        try {
+            checkNull();
+        } catch (IllegalAccessException e1) {
+            e1.printStackTrace();
+        }
     }
 
     public void getPassenger(String va) {
@@ -206,7 +217,7 @@ public class AirplaneAdapter extends SelectableAdapter<RecyclerView.ViewHolder> 
             }
 
 
-            Log.d("SHAN", "RANDOM Adapter****" + number[j]);
+          //  Log.d("SHAN", "RANDOM Adapter****" + number[j]);
             //System.out.print(number[j] + " ");
         }
     }
@@ -227,5 +238,45 @@ public class AirplaneAdapter extends SelectableAdapter<RecyclerView.ViewHolder> 
         }
 
     }
+
+    public void assignSeats(int numberOfSeats){
+
+        for (int j = 0; j <50 ; j++) {
+
+
+        }
+
+    }
+    public void checkNull() throws IllegalAccessException {
+
+
+        for (Field f : availableSeats.getClass().getDeclaredFields()) {
+
+
+            Log.d("SEAT","seat check"+f.getName());
+//            Log.d("SEAT","seat check"+f.get(len));
+
+
+
+       /*     if (f.getName().contentEquals("free")) {
+                availableSeatsArray[len] = 1;
+
+            }
+            else{
+                availableSeatsArray[len] = 0;
+            }*/
+
+            len++;
+
+
+        }
+
+       /* for (int j = 0; j <availableSeatsArray.length ; j++) {{
+
+            Log.d("SEAT","seat check"+availableSeatsArray[j]);
+        }*/
+
+        }
+
 
 }

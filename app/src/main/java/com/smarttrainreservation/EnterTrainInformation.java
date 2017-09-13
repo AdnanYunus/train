@@ -62,7 +62,21 @@ public class EnterTrainInformation extends AppCompatActivity {
         ButterKnife.inject(this);
         auth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        trainTicketsInfo();
+
+        for (int i = 0; i <3 ; i++) {
+
+
+            if(i==0){
+                trainTicketsInfo("First Class");
+            }
+            if (i==1){
+                trainTicketsInfo("Second Class");
+            }
+            if (i==2){
+                trainTicketsInfo("Third Class");
+            }
+        }
+
 
 
     }
@@ -72,6 +86,20 @@ public class EnterTrainInformation extends AppCompatActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_save:
+                for (int i = 0; i <3 ; i++) {
+
+
+                    if(i==0){
+
+                    }
+                    if (i==1){
+
+                    }
+                    if (1==2){
+
+                    }
+                }
+
                 saveTrins();
                 break;
 
@@ -114,12 +142,12 @@ public class EnterTrainInformation extends AppCompatActivity {
 
     }
 
-    public void trainTicketsInfo() {
+    public void trainTicketsInfo(String name) {
 
 
         DatabaseReference donorsRef = mDatabase.child("Train Seats");
-        DatabaseReference usersRef = donorsRef.child("Podi Menike");
-        DatabaseReference seat = usersRef.child("Third Class");
+        DatabaseReference usersRef = donorsRef.child("Samudra Devi");
+        DatabaseReference seat = usersRef.child(name);
 
         Seats seats = new Seats();
         seats.setOne("free");
@@ -183,6 +211,7 @@ public class EnterTrainInformation extends AppCompatActivity {
 
         //finish();
         //startActivity(new Intent(SignupActivity.this, MainActivity.class));
+
 
 
     }

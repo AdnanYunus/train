@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.smarttrainreservation.Models.Invoice;
+import com.smarttrainreservation.Pojo.Seats;
 import com.smarttrainreservation.R;
 
 import java.util.ArrayList;
@@ -41,6 +42,7 @@ public class MainActivitySeats extends AppCompatActivity implements OnSeatSelect
     FirebaseAuth auth;
     DatabaseReference mDatabase;
     int firSeat=0;
+    static  Seats availabaleSeats;
 
     CircularProgressView progressView;
     private TextView txtSeatSelected, txt_manually;
@@ -212,7 +214,7 @@ public class MainActivitySeats extends AppCompatActivity implements OnSeatSelect
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.lst_items);
         recyclerView.setLayoutManager(manager);
 
-        adapter = new AirplaneAdapter(this, items);
+        adapter = new AirplaneAdapter(this, items,availabaleSeats);
         adapter.getPassenger(passenger);
         recyclerView.setAdapter(adapter);
     }
@@ -226,7 +228,7 @@ public class MainActivitySeats extends AppCompatActivity implements OnSeatSelect
     @Override
     public void onSeatSelectedList(int[] a) {
         myseats = a;
-        Log.d("SHAN", "SEat selected size" + a.length);
+      //  Log.d("SHAN", "SEat selected size" + a.length);
     }
 
     public void saveInvoice() {
@@ -262,6 +264,14 @@ public class MainActivitySeats extends AppCompatActivity implements OnSeatSelect
         finish();
         //startActivity(new Intent(SignupActivity.this, MainActivity.class));
 
+
+    }
+
+
+    public  static void getSeatInformation(Seats s){
+        availabaleSeats=s;
+
+       // Log.d("SHAN"," o agyaa e wai ***"+availabaleSeats.getEight());
 
     }
 }

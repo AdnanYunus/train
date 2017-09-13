@@ -2,6 +2,7 @@ package com.smarttrainreservation;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -14,8 +15,10 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.smarttrainreservation.Models.Train;
+import com.smarttrainreservation.Pojo.Seats;
 import com.smarttrainreservation.seatBookingrecyclerView.MainActivitySeats;
 
 import butterknife.ButterKnife;
@@ -26,7 +29,9 @@ public class TicketPricesActivity extends AppCompatActivity {
     TextView arrivedAt, reachedAt, aTime, rTime, distance, tTime, price;
     Button bt_go;
     Train train;
-    String tClass = "firstClass", tName, passenger;
+    Seats seats;
+    String tClass = "firstClass", tName, passenger, forSeatClass;
+
     @InjectView(R.id.progress_view)
     CircularProgressView progressView;
     private FirebaseAuth auth;
@@ -48,15 +53,19 @@ public class TicketPricesActivity extends AppCompatActivity {
 
         if (getIntent().getStringExtra("tclass").equals("1st Class")) {
             tClass = "firstClass";
+            forSeatClass = "First Class";
         } else if (getIntent().getStringExtra("tclass").equals("2nd Class")) {
             tClass = "secondClass";
+            forSeatClass = "Second Class";
         } else if (getIntent().getStringExtra("tclass").equals("3rd Class")) {
             tClass = "thirdClass";
+            forSeatClass = "Third Class";
         }
 
 
         tName = getIntent().getStringExtra("train");
         passenger = getIntent().getStringExtra("passenger");
+
 
         arrivedAt = (TextView) findViewById(R.id.arrivedAt);
         reachedAt = (TextView) findViewById(R.id.reachedAt);
@@ -88,7 +97,10 @@ public class TicketPricesActivity extends AppCompatActivity {
                 // intent.putExtra("",);
 
 
+                MainActivitySeats.getSeatInformation(seats);
                 startActivity(intent);
+
+
                 finish();
 
             }
@@ -96,7 +108,15 @@ public class TicketPricesActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        getUsers();
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                getUsers();
+            }
+        }, 3000);
+
+        getSeatInformation(tName, forSeatClass);
 
 
     }
@@ -145,6 +165,40 @@ public class TicketPricesActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
                 Log.e("SHAN ", databaseError.getMessage());
                 progressView.setVisibility(View.INVISIBLE);
+            }
+        });
+
+
+        //  Toast.makeText(getContext(), "in frag metn "+isAdmin, Toast.LENGTH_SHORT).show();
+    }
+
+    public void getSeatInformation(String tName, String tClass) {
+        progressView.setVisibility(View.VISIBLE);
+
+        final DatabaseReference users = mDatabase.child("Train Seats");
+        DatabaseReference TRAIN = users.child(tName);
+        DatabaseReference CLASS = TRAIN.child(tClass);
+
+        //final DatabaseReference receiver = users.child("GTjrWgpKjoeXUt4JdBJTYP1JkVT2");
+
+        Query query = CLASS.orderByValue();
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(final DataSnapshot dataSnapshot) {
+
+                seats = dataSnapshot.getValue(Seats.class);
+
+                Log.d("SHAN", "SENDER outennnr" + seats);
+                Log.d("SHAN", "SENDER outennnr" + seats.getEight());
+
+
+            }
+
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("SHAN ", databaseError.getMessage());
+                //  progressView.setVisibility(View.INVISIBLE);
             }
         });
 
